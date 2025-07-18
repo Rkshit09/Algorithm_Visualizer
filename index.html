@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="tech-container">
+        <!-- Circuit lines will be added by JavaScript -->
+        <div class="tech-overlay"></div>
+    </div>
+    <div class="container">
+        <header>
+            <div class="header-glitch"></div>
+            <h1>Algorithm Visualizer</h1>
+            <p class="subtitle">EXPLORE THE POWER OF ALGORITHMS</p>
+            <div class="header-scanline"></div>
+        </header>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="controls-panel">
+                    <div class="control-group">
+                        <h3>Array Controls</h3>
+                        <div class="control-items">
+                            <button onclick="generateNewArray()" class="btn primary">Generate Array</button>
+                            <div class="slider-container">
+                                <label for="array-size">Array Size: <span id="size-value">50</span></label>
+                                <input type="range" id="array-size" min="10" max="100" value="50">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h3>Algorithm Selection</h3>
+                        <div class="control-items">
+                            <select id="algorithm" class="algorithm-select">
+                                <option value="" disabled selected>Select an algorithm</option>
+                                <optgroup label="Sorting Algorithms">
+                                    <option value="bubble">Bubble Sort</option>
+                                    <option value="selection">Selection Sort</option>
+                                    <option value="insertion">Insertion Sort</option>
+                                    <option value="merge">Merge Sort</option>
+                                    <option value="quick">Quick Sort</option>
+                                </optgroup>
+                                <optgroup label="Searching Algorithms">
+                                    <option value="linear">Linear Search</option>
+                                    <option value="binary">Binary Search</option>
+                                </optgroup>
+                            </select>
+                            <div class="search-controls">
+                                <div class="search-label">Search Value</div>
+                                <div class="search-input-group">
+                                    <input type="number" 
+                                           id="search-value" 
+                                           placeholder="Enter number (1-100)" 
+                                           class="search-input" 
+                                           min="1" 
+                                           max="100">
+                                    <button onclick="startAlgorithm()" 
+                                            class="btn primary search-btn">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h3>Visualization Controls</h3>
+                        <div class="control-items">
+                            <div class="button-group">
+                                <button onclick="startAlgorithm()" class="btn success" id="start-btn">Execute</button>
+                                <button onclick="stopAlgorithm()" class="btn danger" id="stop-btn" disabled>Terminate</button>
+                                <button onclick="pauseAlgorithm()" class="btn warning" id="pause-btn" disabled>Suspend</button>
+                            </div>
+                            <div class="slider-container">
+                                <label for="speed">Speed: <span id="speed-value">50</span></label>
+                                <input type="range" id="speed" min="1" max="100" value="50">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="algorithm-info-panel">
+                    <h3>Algorithm Analysis</h3>
+                    <div id="algo-description">Select an algorithm to see details</div>
+                    <div class="complexity-table">
+                        <h4>Complexity Analysis</h4>
+                        <div class="complexity-grid">
+                            <div class="complexity-label">Best Case:</div>
+                            <div class="complexity-value" id="best-case">-</div>
+                            
+                            <div class="complexity-label">Average Case:</div>
+                            <div class="complexity-value" id="average-case">-</div>
+                            
+                            <div class="complexity-label">Worst Case:</div>
+                            <div class="complexity-value" id="worst-case">-</div>
+                            
+                            <div class="complexity-label">Space:</div>
+                            <div class="complexity-value" id="space-complexity">-</div>
+                            
+                            <div class="complexity-label">Stable:</div>
+                            <div class="complexity-value" id="stability">-</div>
+                        </div>
+                    </div>
+                    <div class="case-examples">
+                        <h4>Example Cases</h4>
+                        <div id="example-cases">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="visualization-area">
+                    <div class="info-panel">
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span>Comparisons:</span>
+                                <span id="comparison-count">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Swaps:</span>
+                                <span id="swap-count">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="visualization-container">
+                        <div id="bars-container"></div>
+                    </div>
+                </div>
+
+                <div class="log-section">
+                    <div class="log-header">
+                        <h3>Execution Log</h3>
+                        <button onclick="clearLogs()" class="btn small">Clear</button>
+                    </div>
+                    <div id="log-container">
+                        <div id="log-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="legend">
+                <div class="legend-item"><span class="color-box comparing"></span>Processing</div>
+                <div class="legend-item"><span class="color-box sorted"></span>Completed</div>
+                <div class="legend-item"><span class="color-box found"></span>Target</div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
